@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+	nodered:
+		container_name: node-RED
+		image: nodered/node-red:latest
+		volumes:
+		- ${WEBAPP_STORAGE_HOME}/node-red:/data
+	ports:
+		- "1880:1880"
+	restart: always
+
