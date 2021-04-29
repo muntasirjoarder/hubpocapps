@@ -1,12 +1,18 @@
-version: '3.3'
+################################################################################
+# Node-RED Stack or Compose
+################################################################################
+# docker stack deploy node-red --compose-file docker-compose-node-red.yml
+# docker-compose -f docker-compose-node-red.yml -p myNoderedProject up
+################################################################################
+version: "3.7"
 
 services:
-nodered:
-container_name: node-RED
-image: nodered/node-red:latest
-volumes:
-- ${WEBAPP_STORAGE_HOME}/node-red:/data
-ports:
-- "1880:1880"
-restart: always
-
+  node-red:
+    image: nodered/node-red:latest
+    ports:
+      - "1880:1880"
+    networks:
+      - node-red-net
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/node-red:/data
+	restart: always  
